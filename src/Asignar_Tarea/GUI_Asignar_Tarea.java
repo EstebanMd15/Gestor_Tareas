@@ -7,13 +7,15 @@ import java.sql.*;//
 import java.sql.Connection;//
 import javax.swing.JOptionPane;//
 import javax.swing.table.DefaultTableModel;
-import java.sql.Date;
+import IFG.Registro;
 
 
 public class GUI_Asignar_Tarea extends javax.swing.JFrame {
     
     BD_CONEXION enlace1 = new BD_CONEXION();
      Connection con1 = enlace1.conectar();
+     Registro rg = new Registro();
+     
      
     
 
@@ -63,6 +65,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         BTN_Salir_Ast = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -93,6 +96,8 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,10 +200,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
         Tabla_1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Tabla_1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -319,8 +321,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(Combo_AsignadoPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(102, 102, 102))
+                            .addComponent(Combo_AsignadoPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel6)
@@ -334,8 +335,8 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(Combo_Prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(10, 10, 10)))
+                        .addComponent(jLabel4)))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Campo_Observ, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,6 +397,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
 
     private void BTN_Asignar_TareaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Asignar_TareaActionPerformed
           try {
+              
             PreparedStatement asignar = con1.prepareStatement("INSERT INTO ASIGNACION (TAREA,FECHA_ASIGNACION,FECHA_LIMITE,OBSERVACIONES,RESPONSABLE,PRIORIDAD,ASIGNADO_POR,ESTADO) VALUES (?,?,?,?,?,?,?,?)");
             asignar.setString(1, Campo_Tarea.getText());
             java.sql.Date fechaActual = new java.sql.Date(System.currentTimeMillis());
@@ -426,6 +428,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, e + "NO SE REGISTRÓ LA TAREA");
         }
+          mostrar("ASIGNACION");
     }//GEN-LAST:event_BTN_Asignar_TareaActionPerformed
 
     private void BTN_Mostrar_TablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_Mostrar_TablaActionPerformed
@@ -539,6 +542,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ERROR" + e.getMessage());
         }
+        mostrar("ASIGNACION");
     }//GEN-LAST:event_BTN_Eliminar_Tarea1ActionPerformed
 
     private void Campo_Fecha_LimitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_Fecha_LimitActionPerformed
@@ -611,6 +615,7 @@ public class GUI_Asignar_Tarea extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
 }

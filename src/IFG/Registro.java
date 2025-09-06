@@ -4,6 +4,7 @@ import java.sql.Connection;
 import gestor_tareas.BD_CONEXION;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 
 public class Registro extends javax.swing.JFrame {
@@ -185,7 +186,7 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_BTN_OCNFIRMARActionPerformed
 
     private void BTN_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_GuardarActionPerformed
-            try {
+        try {
             PreparedStatement guardar = con.prepareStatement("INSERT INTO REGISTRO (USUARIO,CONTRASEÑA,CARGO) VALUES (?,?,?)");
             guardar.setString(1, Campo_Usuario.getText());
             guardar.setString(2, Campo_contraseña.getText());
